@@ -5,49 +5,56 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pabbly Email Marketing Subscription</title>
     <style>
-        #mailget_signup_form * {
-            font: normal normal 400 16px/1.6 "Helvetica Neue", Helvetica, Arial, sans-serif;
-            color: #383838;
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
+            backdrop-filter: blur(10px);
+            background-color: #e0e0e0;
+            background-image: url('your-background-image.jpg'); /* Optional: Add your own background image */
+            background-size: cover;
+            background-position: center;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
         }
         #mailget_signup_form {
             max-width: 400px;
             width: 100%;
-            margin: 0 auto;
             padding: 20px;
-            border: 1px solid #bbb;
-            border-radius: 5px;
-            background-color: #f9f9f9;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            color: #383838;
         }
         #mailget_signup_form .mg-row {
-            padding: 6px;
+            padding: 10px 0;
         }
         #mailget_signup_form label {
-            display: block;
-            margin-bottom: 3px;
+            margin-bottom: 5px;
         }
-        #mailget_signup_form button, #mailget_signup_form input, #mailget_signup_form textarea {
+        #mailget_signup_form button, #mailget_signup_form input {
             display: block;
-            padding: 4px;
+            padding: 10px;
             border: 1px solid #bbb;
-            border-radius: 2px;
+            border-radius: 5px;
             width: 100%;
-            -webkit-appearance: none;
-            -webkit-box-sizing: border-box;
-            -moz-box-sizing: border-box;
-            box-sizing: border-box;
+            margin-bottom: 10px;
+            font-size: 16px;
+            background-color: rgba(255, 255, 255, 0.5);
         }
-        #mailget_signup_form button:focus, #mailget_signup_form input:focus, #mailget_signup_form textarea:focus {
+        #mailget_signup_form input:focus, #mailget_signup_form button:focus {
             border-color: #23b7e5;
-            outline: 0;
+            outline: none;
         }
         #mailget_signup_form input[type=submit] {
             background-color: #1bc7f2;
             color: #fff;
             border-color: #00A5CF;
             cursor: pointer;
-            font-weight: 700;
-            padding: 5px;
-            margin-top: 12px;
         }
         #mailget_signup_form input[type=submit]:hover {
             background-color: #23b7e5;
@@ -56,7 +63,6 @@
             background-color: #1bc7f2;
         }
         #mailget_signup_form .mg-error {
-            margin-left: 8px;
             font-size: 14px;
             color: #F79572;
             line-height: 1;
