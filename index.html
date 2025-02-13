@@ -10,97 +10,95 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
-            backdrop-filter: blur(10px);
-            background-color: #e0e0e0;
-            background-image: url('your-background-image.jpg'); /* Optional: Add your own background image */
-            background-size: cover;
-            background-position: center;
-            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            background: linear-gradient(135deg, #00c6ff, #0072ff);
+            font-family: "Poppins", sans-serif;
+            margin: 0;
         }
-        #mailget_signup_form {
+        .form-container {
             max-width: 400px;
             width: 100%;
-            padding: 20px;
-            border-radius: 10px;
-            background: rgba(255, 255, 255, 0.3);
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-            backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);
-            border: 1px solid rgba(255, 255, 255, 0.18);
-            color: #383838;
+            padding: 30px;
+            border-radius: 12px;
+            background: white;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
         }
-        #mailget_signup_form .mg-row {
-            padding: 10px 0;
+        .form-container h2 {
+            margin-bottom: 20px;
+            font-size: 22px;
+            color: #333;
         }
-        #mailget_signup_form label {
-            margin-bottom: 5px;
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
         }
-        #mailget_signup_form button, #mailget_signup_form input {
+        .form-group label {
             display: block;
-            padding: 10px;
-            border: 1px solid #bbb;
-            border-radius: 5px;
-            width: 100%;
-            margin-bottom: 10px;
-            font-size: 16px;
-            background-color: rgba(255, 255, 255, 0.5);
+            font-size: 14px;
+            margin-bottom: 5px;
+            color: #555;
         }
-        #mailget_signup_form input:focus, #mailget_signup_form button:focus {
-            border-color: #23b7e5;
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+        .form-group input:focus {
+            border-color: #0072ff;
             outline: none;
         }
-        #mailget_signup_form input[type=submit] {
-            background-color: #1bc7f2;
-            color: #fff;
-            border-color: #00A5CF;
+        .error-message {
+            color: #ff4d4d;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+        .submit-btn {
+            width: 100%;
+            padding: 12px;
+            background: #0072ff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
             cursor: pointer;
+            transition: 0.3s;
         }
-        #mailget_signup_form input[type=submit]:hover {
-            background-color: #23b7e5;
-        }
-        #mailget_signup_form input[type=submit]:active {
-            background-color: #1bc7f2;
-        }
-        #mailget_signup_form .mg-error {
-            font-size: 14px;
-            color: #F79572;
-            line-height: 1;
+        .submit-btn:hover {
+            background: #005bbf;
         }
     </style>
 </head>
 <body>
-    <div id="mailget_signup_form">
-        <form accept-charset="UTF-8" action="https://emails.pabbly.com/signups/subscribe/IjEwMTc3OTgi/immediate" id="mailget_signup_form" name="mailget_form" method="post" onsubmit="return v_mailget()">
-            <div>
-                <input name="utf8" type="hidden" value="?"/>
-                <input name="subs_set_url" type="hidden" value="https://www.pabbly.com/email-marketing/"/>
-            </div>
-            <div class="mg-row">
+    <div class="form-container">
+        <h2>Subscribe to Our PEM Testing</h2>
+        <form action="https://emails.pabbly.com/signups/subscribe/IjEwMTc3OTgi/immediate" method="post" onsubmit="return validateEmail()">
+            <div class="form-group">
                 <label for="signup_name">Name</label>
-                <input id="signup_name" name="subs_name" type="text" placeholder="Your Name" />
+                <input id="signup_name" name="subs_name" type="text" placeholder="Your Name" required />
             </div>
-            <div class="mg-row">
-                <label for="signup_email">Email <span id="mailget_show_message" class="mg-error"></span></label>
-                <input id="signup_email" name="subs_email" type="email" placeholder="email@example.com" />
+            <div class="form-group">
+                <label for="signup_email">Email</label>
+                <input id="signup_email" name="subs_email" type="email" placeholder="email@example.com" required />
+                <span id="email_error" class="error-message"></span>
             </div>
-            <div class="mg-row">
-                <input type="submit" class="submit" value="Subscribe" id="submit_button" />
-            </div>
+            <button type="submit" class="submit-btn">Subscribe</button>
         </form>
     </div>
-    <script type="text/javascript">
-        function v_mailget() {
-            var x = document.forms["mailget_form"]["subs_email"].value;
-            var atpos = x.indexOf("@");
-            var dotpos = x.lastIndexOf(".");
-            if (atpos < 1 || dotpos < atpos + 2 || dotpos + 2 >= x.length) {
-                document.getElementById("mailget_show_message").innerHTML = "valid email required !";
-                document.forms["mailget_form"]["subs_email"].focus();
+    <script>
+        function validateEmail() {
+            var email = document.getElementById("signup_email").value;
+            var errorMessage = document.getElementById("email_error");
+            var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            
+            if (!emailPattern.test(email)) {
+                errorMessage.textContent = "Please enter a valid email address.";
                 return false;
-            } else {
-                return true;
             }
+            errorMessage.textContent = "";
+            return true;
         }
     </script>
 </body>
